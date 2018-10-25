@@ -47,10 +47,10 @@ def list_blogs():
     if request.args:
         user = request.args.get('user')
         blogs = Blog.query.filter_by(owner_id=user).all()
-        return render_template('blog.html', title='Build-a-Blog', blogs=blogs)
+        return render_template('blog.html', title='Blogz Fam', blogs=blogs)
     else:
         blogs = Blog.query.all()
-        return render_template('blog.html', title="Build-a-Blog", blogs=blogs)
+        return render_template('blog.html', title="Blogz Fam", blogs=blogs)
 
 @app.route('/add', methods=['POST', 'GET'])
 def add_blog():
@@ -65,7 +65,7 @@ def add_blog():
         
         if len(blog_name) == 0 or len(blog_body) == 0:
             error = "Text is required in both fields."
-            return render_template('blog_entry_form.html', error=error, title='Add-a-Blog')
+            return render_template('blog_entry.html', error=error, title='Add Your Blog')
 
         else:
             new_blog = Blog(blog_name, blog_body, owner)
@@ -74,9 +74,9 @@ def add_blog():
             blog_id = new_blog.id
             blog = Blog.query.filter_by(id = blog_id).first()
 
-        return render_template('solo_blog.html', blog_name=blog_name, blog_body=blog_body, title='Here\'s-a-Blog', email=email, id=id, blog=blog)
+        return render_template('blog_uno.html', blog_name=blog_name, blog_body=blog_body, title='This is a Blog', email=email, id=id, blog=blog)
     
-    return render_template('blog_entry_form.html', title='Add-a-Blog')  
+    return render_template('blog_entry.html', title='Add your Blog')  
 
 
 @app.route('/blog-post', methods=['POST', 'GET'])
@@ -87,7 +87,7 @@ def goto_blog():
     blog_body = blog.entry
     email = blog.owner.email
 
-    return render_template('solo_blog.html', title='Here\'s-a-Blog', blog_name = blog_name, blog_body = blog_body, email=email, blog=blog)
+    return render_template('blog_uno.html', title='This is a Blog', blog_name = blog_name, blog_body = blog_body, email=email, blog=blog)
 
 @app.route("/signup", methods=['GET', 'POST'])
 def register():

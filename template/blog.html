@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="font-family: Arial, Helvetica, sans-serif;">
+<a href="/blog" style="font-size: 1em;">Main Blog Page</a> | 
+<a href="/add" style="font-size: 1em;">Add a Blog Entry</a> |
+<a href="/" style="font-size: 1em;">User Index</a>
+
+
+
+    <h1 style="text-align: center;">This is a Blog</h1>
+
+        <ul>
+            {% for blog in blogs %}
+            <strong><span style="font-size: 2em;"><a href="blog-post?id={{blog.id}}" >{{blog.title}}</a></strong></span><br/><br/>
+            <span style="font-size: 1em;">{{blog.entry}}</span><br/>
+            <strong><div style='font-size: 0.75em; text-align: right;'>Written by: <a href="?user={{blog.owner.id}}" >{{blog.owner.email}}</a></strong></div>
+            <hr />
+            {% endfor %}
+        </ul>
+</div>
+{% endblock %}
