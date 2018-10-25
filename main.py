@@ -101,10 +101,10 @@ def register():
         if len(email) > 20:
             flash('Your name is too long, fam')
             return redirect('/signup')
-        if len(password) > 4:
+        if len(password) < 4:
             flash('Your password is too short, fam!')
             return redirect('/signup')
-        if len(password) < 20:
+        if len(password) > 20:
             flash('Your password is too long, Bruh!')
             return redirect('/signup')
         if not is_email(email):
