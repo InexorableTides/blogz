@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<div style="font-family: Arial, Helvetica, sans-serif;">
+<a href="/blog" style="font-size: 1em;">Main Blog Page</a> | 
+<a href="/add" style="font-size: 1em;">Add a Blog Entry</a> |
+<a href="/" style="font-size: 1em;">User Index</a>
+
+    <h1 style="text-align: center;">Add-a-Blog</h1>
+    <form method='post' action='/add'>
+        <label>
+            <strong>Title:</strong> <br/>
+            <input type="text" name='blog_title' style="margin-bottom: 3em;"
+        </label><br/>
+        <label>
+            <strong>Entry:</strong> </br>
+            <textarea name="blog_entry" style="width: 20em; height: 20em; margin-bottom: 1em;"></textarea>
+        </label><br/><br/>
+        <input type="submit" value='Add Blog' />
+    </form>
+</div>
+
+{% if error %}
+  <p class='error'>{{ error }}</p>
+{% endif %}
+
+{% endblock %}

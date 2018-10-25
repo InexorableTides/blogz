@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+    <head>
+        <style>
+        .error{ color: red;}
+        </style>
+        <title>{{title}}</title>
+    </head>
+<body>
+        <div style='float: right'>
+          {% if 'user' in session %}
+            {{ session['user'] }}
+            <form action="/logout" method="post" id='logout'>
+              <input type="submit" value="Log Out" />
+            </form>
+          {% else %}
+            <a href="login">login</a> | <a href="signup">signup</a> | <a href="/">home</a>
+          {% endif %}
+        </div>
+
+    {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul class=flashes>
+              {% for message in messages %}
+              <li>{{ message }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+    {% endwith %}
+
+    {% block content %}
+    {% endblock %}
+
+</body>
+</html>
