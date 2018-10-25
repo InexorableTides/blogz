@@ -95,8 +95,17 @@ def register():
         email = request.form['email']
         password = request.form['password']
         verify = request.form['verify']
-        if len(email) < 3 or len(password) < 3:
+        if len(email) < 4:
             flash('Your name is not long enough, fam!')
+            return redirect('/signup')
+        if len(email) > 20:
+            flash('Your name is too long, fam')
+            return redirect('/signup')
+        if len(password) > 4:
+            flash('Your password is too short, fam!')
+            return redirect('/signup')
+        if len(password) < 20:
+            flash('Your password is too long, Bruh!')
             return redirect('/signup')
         if not is_email(email):
             flash('Bruh, "' + email + '" is not a real email address')
@@ -151,4 +160,4 @@ def logout():
 app.secret_key = 'itsasecretyo'
 
 if __name__ == '__main__':
-app.run()
+    app.run()
